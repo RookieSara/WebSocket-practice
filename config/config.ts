@@ -83,73 +83,50 @@ if (isAntDesignProPreview) {
 export default {
   plugins,
   hash: true,
+  history:'hash',
   targets: {
     ie: 11,
   },
   // umi routes: https://umijs.org/zh/guide/router.html
   routes: [
     {
-      path: '/user',
-      component: '../layouts/UserLayout',
+      path:'/add',
+      component: '../layouts/BlankLayout',
       routes: [
         {
-          name: 'login',
-          path: '/user/login',
-          component: './user/login',
+          path: '/add',
+          component: './addData',
         },
-      ],
+        {
+          component: './404',
+        },
+      ]
     },
     {
       path: '/',
-      component: '../layouts/SecurityLayout',
+      component: '../layouts/BasicLayout',
       routes: [
         {
           path: '/',
-          component: '../layouts/BasicLayout',
-          authority: ['admin', 'user'],
-          routes: [
-            {
-              path: '/',
-              redirect: '/index',
-            },
-            {
-              name: 'index',
-              icon: 'EditOutlined',
-              path: '/index',
-              component: './index',
-            },
-            {
-              path: '/welcome',
-              name: 'welcome',
-              icon: 'smile',
-              component: './Welcome',
-            },
-            {
-              path: '/admin',
-              name: 'admin',
-              icon: 'crown',
-              component: './Admin',
-              authority: ['admin'],
-              routes: [
-                {
-                  path: '/admin/sub-page',
-                  name: 'sub-page',
-                  icon: 'smile',
-                  component: './Welcome',
-                  authority: ['admin'],
-                },
-              ],
-            },
-            {
-              name: 'list.table-list',
-              icon: 'table',
-              path: '/list',
-              component: './ListTableList',
-            },
-            {
-              component: './404',
-            },
-          ],
+          redirect: '/index',
+        },
+        {
+          name: 'index',
+          icon: 'EditOutlined',
+          path: '/index',
+          component: './index',
+        },
+        {
+          path: '/welcome',
+          name: 'welcome',
+          icon: 'smile',
+          component: './Welcome',
+        },
+        {
+          name: 'list.table-list',
+          icon: 'table',
+          path: '/list',
+          component: './ListTableList',
         },
         {
           component: './404',
